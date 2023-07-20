@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 from datetime import datetime
+import openpyxl
 import re
 import os
 
@@ -17,7 +18,7 @@ teams = {
     'BAL' : {'url':'baltimore-orioles',     'full-name':'Baltimore Orioles'},
     'BOS' : {'url':'boston-red-sox',        'full-name':'Boston Red Sox'},
     'CHC' : {'url':'chicago-cubs',          'full-name':'Chicago Cubs'},
-    'CWS' : {'url':'chicago-white-sox',     'full-name':'Chicago White Sox'},
+    'CHW' : {'url':'chicago-white-sox',     'full-name':'Chicago White Sox'},
     'CIN' : {'url':'cincinnati-reds',       'full-name':'Cincinnati Reds'},
     'CLE' : {'url':'cleveland-guardians',   'full-name':'Cleveland Guardians',  'former-url':'cleveland-indians'},
     'COL' : {'url':'colorado-rockies',      'full-name':'Colorado Rockies'},
@@ -38,15 +39,17 @@ teams = {
     'SFG' : {'url':'san-francisco-giants',  'full-name':'San Francisco Giants'},
     'SEA' : {'url':'seattle-mariners',      'full-name':'Seattle Mariners'},
     'STL' : {'url':'st-louis-cardinals',    'full-name':'St Louis Cardinals'},
-    'TAM' : {'url':'tampa-bay-rays',        'full-name':'Tampa Bay Rays'},
+    'TBR' : {'url':'tampa-bay-rays',        'full-name':'Tampa Bay Rays'},
     'TEX' : {'url':'texas-rangers',         'full-name':'Texas Rangers'},
     'TOR' : {'url':'toronto-blue-jays',     'full-name':'Toronto Blue Jays'},
-    'WAS' : {'url':'washington-nationals',  'full-name':'Washington Nationals'}
+    'WSN' : {'url':'washington-nationals',  'full-name':'Washington Nationals'}
 }
 
 #-------------------------------------------------------------------------------------------------#
 # Find player salary data from Spotrac
 #-------------------------------------------------------------------------------------------------#
+
+df_all = pd.DataFrame()
 
 # Data is only since 2020 since Spotrac has paywall for rest
 for yr in range(2020,2024):
@@ -63,12 +66,18 @@ for yr in range(2020,2024):
         table = soup.find_all("table")[0]
 
         # Create dataframe and export to csv
-        df = pd.read_html(str(table))[0]
-        df['Team'] = t[0]
-        df['Year'] = yr
+        df_team = pd.read_html(str(table))[0]
+        df_team['Team'] = t[0]
+        df_team['Year'] = yr
 
-        # TODO: instead export to xlsx with a sheet for each table
-        df.to_csv('salaries.csv', mode='a', header=(t[0]=='ARI' and yr==2020), index=False)
+        # Add team dataframe to total dataframe
+        df_all = pd.concat([df_all,df_team])
+
+
+
+# Export dataframe to excel sheet 
+with pd.ExcelWriter('./data/mlb_payroll_data.xlsx', 'openpyxl', mode='a', if_sheet_exists='replace') as f:            
+    df_all.to_excel(f, sheet_name='Salaries', index=False)
 
 # TODO: Get player data for players that were on the injured list
 # So far the only data is from players that were on the active roster to end the season
