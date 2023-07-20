@@ -7,5 +7,5 @@ Through this project, I aim to analyze how the distribution of payroll affects t
       scrape_salary_data.py
 <h5>data/</h5>
 
-      salaries.csv
+      mlb_payroll_data.xlsx
 <h2></h2>
