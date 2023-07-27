@@ -13,7 +13,7 @@ Through this project, I aim to analyze how the distribution of payroll affects t
 
 By comparing the distribution of payroll among positions to win percentage, runs scored, and runs allowed, we may find greater value in certain positions or position groups. 
 
-Further analysis of age distribution on the payroll could lead to insights on the benefits of experience vs youth over one another.
+Further analysis of age distribution on the payroll could lead to insights on the benefits of experience vs youth.
 
 ## File Structure
 
