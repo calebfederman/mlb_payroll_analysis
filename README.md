@@ -19,11 +19,11 @@ Further analysis of age distribution on the payroll could lead to insights on th
 
 ### src/
 
- - scrape_salary_data.py
+ - <a href="https://github.com/calebfederman/mlb_payroll_distribution_analysis/blob/main/src/scrape_salary_data.py">scrape_salary_data.py</a>
  - 
 
 ### data/
 
-- mlb_payroll_data.xlsx
+- <a href="https://github.com/calebfederman/mlb_payroll_distribution_analysis/blob/main/data/mlb_payroll_data.xlsx">mlb_payroll_data.xlsx</a>
 - 
 
