@@ -44,11 +44,11 @@ teams = {
     'WSN' : {'url':'washington-nationals',  'full-name':'Washington Nationals'}
 }
 
-#-------------------------------------------------------------------------------------------------#
+'''#-------------------------------------------------------------------------------------------------#
 # Find player salary data from Spotrac
 #-------------------------------------------------------------------------------------------------#
 
-'''df_player_salaries = pd.DataFrame()
+df_player_salaries = pd.DataFrame()
 
 # Data is only since 2020 since Spotrac has paywall for rest
 for yr in range(2020,2024):
@@ -103,6 +103,7 @@ df_player_salaries = df_player_salaries[df_player_salaries['Salary']!='-']
 df_player_salaries['Salary'] = df_player_salaries['Salary'].str.replace('$','')
 df_player_salaries['Salary'] = df_player_salaries['Salary'].str.replace(',','').astype(int)
 
+
 # Export dataframe to csv
 df_player_salaries.to_csv('./data/player_salaries.csv', index=False)'''
 
@@ -112,7 +113,7 @@ df_player_salaries.to_csv('./data/player_salaries.csv', index=False)'''
 
 df_standings = pd.read_csv('./data/mlb_standings.csv')
 
-df_standings['Year'] = [2023]*30 + [2022]*30 +[2021]*30 + [2020]*30
+#df_standings['Year'] = [2023]*30 + [2022]*30 +[2021]*30 + [2020]*30
 
 df_standings = df_standings.sort_values('Tm')
 abbr = list(teams.keys()) * 4
@@ -126,17 +127,26 @@ df_standings.to_csv('./data/mlb_standings.csv', index=False)
 # Create Team Yearly Salaries dataframe
 #-------------------------------------------------------------------------------------------------#
 
-df_player_salaries = pd.read_csv('./data/player_salaries.csv')
+#df_player_salaries = pd.read_csv('./data/player_salaries.csv')
 
-df_team_salaries = df_player_salaries.groupby(['Team','Year','Pos.'])['Salary'].sum()
+'''df_team_salaries = df_player_salaries.groupby(['Team','Year','Pos.'])['Salary'].sum()
 
 df_team_salaries.to_csv('./data/team_salaries.csv')
 df_team_salaries = pd.read_csv('./data/team_salaries.csv')
 
-df_team_salaries = pd.pivot(df_team_salaries,index=['Team','Year'],columns='Pos.',values='Salary')
+#df_team_salaries = pd.pivot(df_team_salaries,index=['Team','Year'],columns='Pos.',values='Salary')
 
-df_team_salaries.to_csv('./data/team_salaries.csv')
+df_team_salaries.to_csv('./data/team_salaries.csv')'''
 
+
+#-------------------------------------------------------------------------------------------------#
+# Create Excel spreadsheets from dataframes
+#-------------------------------------------------------------------------------------------------#
+
+with pd.ExcelWriter('./data/mlb_payroll_data.xlsx', 'openpyxl', mode='a', if_sheet_exists='replace') as f:            
+    #df_player_salaries.to_excel(f, sheet_name='Player Salaries', index=False)
+    #df_team_salaries.to_excel(f,sheet_name='Team Salaries')
+    df_standings.to_excel(f,sheet_name='MLB Standings', index=False)
 
 #-------------------------------------------------------------------------------------------------#
 
