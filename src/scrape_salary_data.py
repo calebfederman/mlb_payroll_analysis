@@ -90,7 +90,7 @@ for yr in range(2020,2024):
         
 
 
-# Merge all "Player" columns into one Player column
+# Merge all player name columns into one unifying "Player" column
 player_columns = [col for col in df_player_salaries.columns if "Player" in col]
 df_player_names = df_player_salaries[player_columns]
 df_player_salaries = df_player_salaries.drop(player_columns, axis=1)
