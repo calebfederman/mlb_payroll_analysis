@@ -134,7 +134,7 @@ df_team_salaries = df_player_salaries.groupby(['Team','Year','Pos.'])['Salary'].
 df_team_salaries.to_csv('./data/team_salaries.csv')
 df_team_salaries = pd.read_csv('./data/team_salaries.csv')
 
-#df_team_salaries = pd.pivot(df_team_salaries,index=['Team','Year'],columns='Pos.',values='Salary')
+df_team_salaries = pd.pivot(df_team_salaries,index=['Team','Year'],columns='Pos.',values='Salary')
 
 df_team_salaries.to_csv('./data/team_salaries.csv')
 
@@ -144,8 +144,8 @@ df_team_salaries.to_csv('./data/team_salaries.csv')
 #-------------------------------------------------------------------------------------------------#
 
 with pd.ExcelWriter('./data/mlb_payroll_data.xlsx', 'openpyxl', mode='a', if_sheet_exists='replace') as f:            
-    #df_player_salaries.to_excel(f, sheet_name='Player Salaries', index=False)
-    #df_team_salaries.to_excel(f,sheet_name='Team Salaries')
+    df_player_salaries.to_excel(f, sheet_name='Player Salaries', index=False)
+    df_team_salaries.to_excel(f,sheet_name='Team Salaries')
     df_standings.to_excel(f,sheet_name='MLB Standings', index=False)
 
 #-------------------------------------------------------------------------------------------------#
