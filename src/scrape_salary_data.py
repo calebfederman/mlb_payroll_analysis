@@ -44,7 +44,7 @@ teams = {
     'WSN' : {'url':'washington-nationals',  'full-name':'Washington Nationals'}
 }
 
-'''#-------------------------------------------------------------------------------------------------#
+#-------------------------------------------------------------------------------------------------#
 # Find player salary data from Spotrac
 #-------------------------------------------------------------------------------------------------#
 
@@ -105,7 +105,7 @@ df_player_salaries['Salary'] = df_player_salaries['Salary'].str.replace(',','').
 
 
 # Export dataframe to csv
-df_player_salaries.to_csv('./data/player_salaries.csv', index=False)'''
+df_player_salaries.to_csv('./data/player_salaries.csv', index=False)
 
 #-------------------------------------------------------------------------------------------------#
 # Add team abbr and year to standings
@@ -129,14 +129,14 @@ df_standings.to_csv('./data/mlb_standings.csv', index=False)
 
 #df_player_salaries = pd.read_csv('./data/player_salaries.csv')
 
-'''df_team_salaries = df_player_salaries.groupby(['Team','Year','Pos.'])['Salary'].sum()
+df_team_salaries = df_player_salaries.groupby(['Team','Year','Pos.'])['Salary'].sum()
 
 df_team_salaries.to_csv('./data/team_salaries.csv')
 df_team_salaries = pd.read_csv('./data/team_salaries.csv')
 
 #df_team_salaries = pd.pivot(df_team_salaries,index=['Team','Year'],columns='Pos.',values='Salary')
 
-df_team_salaries.to_csv('./data/team_salaries.csv')'''
+df_team_salaries.to_csv('./data/team_salaries.csv')
 
 
 #-------------------------------------------------------------------------------------------------#
