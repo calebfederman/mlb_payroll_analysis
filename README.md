@@ -1,7 +1,7 @@
-# MLB Payroll Distribution Analysis
+# MLB Payroll Analysis
 
 Author: Caleb Federman<br>
-Latest Revision: 19-Jul-2023
+Latest Revision: 11-Oct-2023
 
 ## Table of Contents
 - [About](#about)
