@@ -61,7 +61,7 @@ Upon further thought we then realize, that in the case of the Mets, the lower pa
 TODO: for padres... payroll steadily increasing, but random W-L% results (cause??? randomness of baseball...)
 
 <img src="./img/orioles_trend.png" alt="Orioles Payroll vs W-L%" height="300"/>
-<img src="./img/Rays_trend.png" alt="Rays Payroll vs W-L%" height="300"/>
+<img src="./img/rays_trend.png" alt="Rays Payroll vs W-L%" height="300"/>
 
 
 TODO: for orioles... payroll jumped in 2023, but largely due to arbitration deals and 2 FA signings (Kyle Gibson and Adam Frazier) ... improved W-L% due to performance of young, cheap prospects that have panned out
